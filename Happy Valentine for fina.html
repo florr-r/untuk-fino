@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Fina 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4ec 50%, #ffd1dc 100%);
+            color: #4a4a4a;
+        }
+
+        /* Floating Flowers */
+        .flower {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0.4;
+            animation: floatFlower 25s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatFlower {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            33% {
+                transform: translateY(-40px) rotate(120deg) scale(1.1);
+            }
+            66% {
+                transform: translateY(-20px) rotate(240deg) scale(0.9);
+            }
+        }
+
+        .flower:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+        .flower:nth-child(2) { top: 25%; right: 12%; animation-delay: 4s; }
+        .flower:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 8s; }
+        .flower:nth-child(4) { bottom: 30%; right: 8%; animation-delay: 12s; }
+        .flower:nth-child(5) { top: 50%; left: 5%; animation-delay: 16s; }
+        .flower:nth-child(6) { top: 60%; right: 5%; animation-delay: 20s; }
+
+        /* Opening Section */
+        .opening-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            background: radial-gradient(circle at center, rgba(255, 182, 193, 0.1) 0%, transparent 70%);
+        }
+
+        .gift-box {
+            width: 180px;
+            height: 180px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+            margin-bottom: 2.5rem;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .box {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+        }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 140px;
+            background: #ff1493;
+            left: 60px;
+            top: 0;
+        }
+
+        .box::after {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 20px;
+            background: #ff1493;
+            top: 60px;
+            left: 0;
+        }
+
+        .lid {
+            width: 160px;
+            height: 40px;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
+            position: absolute;
+            top: 0;
+            left: 10px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.3);
+            transition: transform 0.8s ease;
+            transform-origin: bottom;
+        }
+
+        .gift-box.opened .lid {
+            transform: rotateX(-120deg) translateY(-20px);
+        }
+
+        .bow {
+            width: 60px;
+            height: 60px;
+            background: #ff1493;
+            position: absolute;
+            top: -20px;
+            left: 60px;
+            border-radius: 50%;
+            box-shadow: 0 3px 15px rgba(255, 20, 147, 0.4);
+        }
+
+        .bow::before,
+        .bow::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #ff69b4;
+            border-radius: 50%;
+            top: 10px;
+        }
+
+        .bow::before {
+            left: -35px;
+        }
+
+        .bow::after {
+            right: -35px;
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .gift-box.opened .sparkles {
+            opacity: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: sparkleAnim 1s ease-out forwards;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .opening-text {
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            max-width: 600px;
+        }
+
+        .opening-text.show {
+            opacity: 1;
+        }
+
+        .opening-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .opening-text p {
+            font-size: 1.15rem;
+            color: #d4568c;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .enter-button {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 3.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        .enter-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(255, 20, 147, 0.6);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .main-content.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 850px;
+            width: 100%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s ease;
+            font-weight: 700;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Story Cards */
+        .story-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            padding: 3rem;
+            border-radius: 25px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.9s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::before {
+            content: '🌸';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.1;
+        }
+
+        .story-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .story-card:nth-child(even) {
+            transform: translateX(60px);
+        }
+
+        .story-card:nth-child(even).visible {
+            transform: translateX(0);
+        }
+
+        .story-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #ff1493;
+            font-size: 1.7rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+
+        .story-card p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* Quality Grid */
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .quality-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: scale(0.85);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.12);
+            border: 2px solid rgba(255, 182, 193, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quality-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .quality-card:hover::before {
+            opacity: 1;
+        }
+
+        .quality-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .quality-card:hover {
+            transform: scale(1.08) rotate(3deg);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.25);
+        }
+
+        .quality-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .quality-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: #ff1493;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .quality-card p {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Reasons Section */
+        .reasons-list {
+            margin-top: 3rem;
+        }
+
+        .reason-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.95) 100%);
+            padding: 2rem 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            border-left: 6px solid #ff69b4;
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.7s ease;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.1);
+        }
+
+        .reason-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reason-item:hover {
+            transform: translateX(15px);
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.25);
+            border-left-color: #ff1493;
+        }
+
+        .reason-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 1.2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Secret Heart Button */
+        .secret-trigger {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(255, 20, 147, 0.5);
+            transition: all 0.4s ease;
+            z-index: 1000;
+            opacity: 0;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        .secret-trigger.show {
+            opacity: 1;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .secret-trigger:hover {
+            transform: scale(1.25);
+        }
+
+        /* Modal Surprise */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.6s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4ec 100%);
+            padding: 3.5rem;
+            border-radius: 30px;
+            max-width: 650px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.7s ease;
+            box-shadow: 0 25px 70px rgba(255, 20, 147, 0.4);
+            border: 3px solid rgba(255, 182, 193, 0.5);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(120px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 2.2rem;
+            cursor: pointer;
+            color: #ff69b4;
+            transition: color 0.3s ease;
+            font-weight: 300;
+        }
+
+        .close-modal:hover {
+            color: #ff1493;
+        }
+
+        .modal-content h2 {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .modal-content p {
+            color: #666;
+            line-height: 2;
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            font-weight: 300;
+        }
+
+        .hearts {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2.5rem 0;
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff69b4 0%, #ff1493 100%);
+            width: 0%;
+            z-index: 3000;
+            transition: width 0.1s ease;
+            box-shadow: 0 2px 10px rgba(255, 20, 147, 0.3);
+        }
+
+        /* Petals Animation */
+        .petal {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffb6c1;
+            border-radius: 50%;
+            animation: petalFall 4s linear;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        @keyframes petalFall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .opening-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .quality-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 2.5rem;
+            }
+
+            .story-card {
+                padding: 2rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fff0f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Floating Flowers -->
+    <div class="flower">🌺</div>
+    <div class="flower">🌸</div>
+    <div class="flower">🌷</div>
+    <div class="flower">🌹</div>
+    <div class="flower">💐</div>
+    <div class="flower">🌼</div>
+
+    <!-- Opening Section -->
+    <div class="opening-section">
+        <div class="gift-box" id="giftBox">
+            <div class="lid"></div>
+            <div class="bow"></div>
+            <div class="box"></div>
+            <div class="sparkles">
+                <span class="sparkle" style="--x: -50px; --y: -50px;">✨</span>
+                <span class="sparkle" style="--x: 50px; --y: -50px;">✨</span>
+                <span class="sparkle" style="--x: -50px; --y: 50px;">✨</span>
+                <span class="sparkle" style="--x: 50px; --y: 50px;">✨</span>
+            </div>
+        </div>
+
+        <div class="opening-text" id="openingText">
+            <h1>Hai, Fina! 💕</h1>
+            <p>Ada sesuatu spesial yang aku bikinin buat kamu.<br>
+            Bukan hadiah yang bisa dibungkus pita,<br>
+            tapi something yang semoga bisa bikin kamu tersenyum hari ini.</p>
+            <button class="enter-button" id="enterButton">Buka Hadiahnya 🎁</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Section 1: Our Journey -->
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title">Perjalanan Kita Jadi Wanita Dewasa 🌸</h2>
+                
+                <div class="story-card">
+                    <h3>Fin, Kita Sama-Sama Kuat Ya!</h3>
+                    <p>Kadang hidup emang nggak selalu manis kan. Kita berdua pernah ngalamin masa-masa yang bikin kita harus tumbuh lebih cepat, jadi lebih dewasa, dan belajar jadi lebih kuat. Fino bangga sama kamu yang bisa melewati semua itu dengan kepala tegak. Kamu hebat, Fin!</p>
+                </div>
+
+                <div class="story-card">
+                    <h3>Ketemu Kamu dikuliah dan lebih dekat di kp kemaren, aku merasa bersyukur!</h3>
+                    <p>Honestly, pas kenal kamu lebih deket di tempat kerja praktik kemarin, aku sadar betapa amazing-nya kamu. Kamu bukan cuma temen biasa, tapi seseorang yang bener-bener punya hati yang lembut dan baik. Di balik sifat feminim dan kelembutan kamu, ada kekuatan yang luar biasa. You're a real woman, Fin!</p>
+                </div>
+
+                <div class="story-card">
+                    <h3>Tentang Jadi Wanita yang Dewasa</h3>
+                    <p>Kita berdua udah lewatin banyak hal yang bikin kita harus mengambil keputusan sulit, menghadapi kenyataan pahit, dan tetep harus strong. Tapi tau nggak? Justru itu yang bikin kita jadi wanita yang lebih dewasa dan lebih bijak. Kamu udah jadi pribadi yang lebih baik dari sebelumnya, dan itu sesuatu yang patut disyukuri banget! 💪✨</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Beautiful Qualities -->
+        <div class="section" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 228, 236, 0.4) 100%);">
+            <div class="container">
+                <h2 class="section-title">Yang Bikin Kamu Istimewa 🌹</h2>
+                
+                <div class="quality-grid">
+                    <div class="quality-card">
+                        <div class="quality-icon">🌸</div>
+                        <h4>Lembut & Feminim</h4>
+                        <p>Cara kamu berbicara, bersikap, semuanya lembut dan feminim banget. It's so you!</p>
+                    </div>
+
+                    <div class="quality-card">
+                        <div class="quality-icon">💝</div>
+                        <h4>Hati yang Baik</h4>
+                        <p>Kebaikan hati kamu tuh genuine. Nggak dibuat-buat, natural dari hatimu yang tulus</p>
+                    </div>
+
+                    <div class="quality-card">
+                        <div class="quality-icon">🦋</div>
+                        <h4>Kuat Tapi Tetep Anggun</h4>
+                        <p>Kamu strong dalam menghadapi hidup, tapi tetep graceful dan elegan</p>
+                    </div>
+
+                    <div class="quality-card">
+                        <div class="quality-icon">✨</div>
+                        <h4>Cewe Banget!</h4>
+                        <p>Dari cara kamu dress up, ngomong, sampe bersikap - you're such a girl! Love it!</p>
+                    </div>
+
+                    <div class="quality-card">
+                        <div class="quality-icon">🌺</div>
+                        <h4>Empati Tinggi</h4>
+                        <p>Kamu bisa ngerasain apa yang orang lain rasain. Caring dan perhatian</p>
+                    </div>
+
+                    <div class="quality-card">
+                        <div class="quality-icon">💖</div>
+                        <h4>Punya Inner Strength</h4>
+                        <p>Di balik kelembutan kamu, ada kekuatan yang nggak semua orang punya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Why You're Amazing -->
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title">Kenapa Fina Itu Wanita Hebat 👑</h2>
+                
+                <div class="reasons-list">
+                    <div class="reason-item">
+                        <span class="reason-number">1</span>
+                        <strong>Kamu Tetep Lembut Meski Hidup Keras</strong> - Ini amazing sih Fin. Meski udah ngalamin banyak hal berat, kamu tetep bisa jaga kelembutan hati kamu. That takes real strength!
+                    </div>
+
+                    <div class="reason-item">
+                        <span class="reason-number">2</span>
+                        <strong>Kamu Dewasa Tapi Tetep Humble</strong> - Kamu udah dewasa dalam berpikir dan bertindak, tapi nggak sombong. Tetep rendah hati dan approachable. Salut deh!
+                    </div>
+
+                    <div class="reason-item">
+                        <span class="reason-number">3</span>
+                        <strong>Kamu Genuine</strong> - What you see is what you get. Nggak ada yang fake dari kamu. Authenticity is so rare nowadays, dan kamu punya itu!
+                    </div>
+
+                    <div class="reason-item">
+                        <span class="reason-number">4</span>
+                        <strong>Kamu Supportive</strong> - Sebagai temen, kamu selalu ada. Supportive, caring, dan nggak judgmental. That means a lot!
+                    </div>
+
+                    <div class="reason-item">
+                        <span class="reason-number">5</span>
+                        <strong>Kamu Inspiratif</strong> - Cara kamu bangkit dari keterpurukan itu inspiring banget. Kamu bukti bahwa wanita bisa kuat dan tetep feminim at the same time!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Final Message -->
+        <div class="section" style="background: linear-gradient(135deg, rgba(255, 240, 245, 0.6) 0%, rgba(255, 228, 236, 0.6) 100%);">
+            <div class="container">
+                <h2 class="section-title">untuk finoo 💕</h2>
+                
+                <div class="story-card">
+                    <p style="font-size: 1.2rem; text-align: center; line-height: 2.2;">
+                        Fina, Valentine tahun ini mungkin kamu lewatin tanpa someone special,<br>
+                        tapi kamu harus tau kalau kamu itu already special by yourself!<br><br>
+                        Kamu wanita yang luar biasa.<br>
+                        Feminim, lembut, baik hati, tapi juga kuat dan dewasa.<br><br>
+                        <strong style="color: #ff1493;">Kombinasi yang perfect banget!</strong><br><br>
+                        Jangan pernah berubah ya, Fin.<br>
+                        Tetep jadi dirimu yang sekarang - beautiful inside and out.<br><br>
+                        <em style="color: #ff69b4;">Happy Valentine's Day, Fina! 🌸</em><br>
+                        Semoga tahun ini penuh kebahagiaan, kesuksesan, dan cinta yang tulus.<br>
+                        Fino will always support you! 💖
+                    </p>
+                </div>
+
+                <p style="text-align: center; margin-top: 3rem; color: #d4568c; font-style: italic; font-size: 0.95rem;">
+                    Psst... udah scroll sampe bawah? Coba liat pojok kanan bawah deh... ada yang lucu 👀💕
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secret Heart Button -->
+    <div class="secret-trigger" id="secretBtn">
+        💖
+    </div>
+
+    <!-- Modal Surprise -->
+    <div class="modal" id="surpriseModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>Special Message! 💝</h2>
+            
+            <p>
+                Oke Fin, ini bagian yang cuma kamu yang bisa baca...
+            </p>
+
+            <p>
+                <strong>Thank you so much</strong> karena udah jadi bagian dari perjalanan hidup aku. Meski kita bukan sahabat dari kecil, tapi bond yang kita punya itu special. Kita sama-sama ngerti struggle masing-masing, dan itu yang bikin connection kita beda.
+            </p>
+
+            <p>
+                aku jadi punya temen yang beneran ngerti, yang punya pengalaman serupa, dan yang sama-sama lagi berjuang jadi wanita yang lebih baik. Thank you for being you, Fin!
+            </p>
+
+            <p>
+                <strong>Harapan aku buat kamu?</strong><br>
+                Semoga kamu terus jadi wanita yang amazing seperti sekarang. Tetep lembut, tetep baik hati, tetep feminim, dan tetep strong. Someday, someone special will come into your life dan dia bakal appreciate setiap bagian dari dirimu. But until then, keep being the beautiful soul that you are!
+            </p>
+
+            <p>
+                Dan kalau suatu saat kamu butuh temen buat curhat, ketawa bareng, atau even just silent company - Fino always here. Kita kan sama-sama survivor yang lagi jadi wanita hebat! 💪✨
+            </p>
+
+            <div class="hearts">
+                💕 🌸 💕 🌸 💕
+            </div>
+
+            <p style="text-align: center; font-style: italic; color: #999; margin-top: 2rem;">
+                P.S. Jangan pernah lupa kalau kamu itu wanita yang luar biasa. Inside and outside. Always remember that! 🌹
+            </p>
+
+            <p style="text-align: center; margin-top: 2rem;">
+                <strong style="color: #ff1493; font-size: 1.4rem;">Happy Valentine's Day, Beautiful! 💖🌸</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Gift Box Animation
+        const giftBox = document.getElementById('giftBox');
+        const openingText = document.getElementById('openingText');
+        const enterButton = document.getElementById('enterButton');
+        const mainContent = document.getElementById('mainContent');
+        const secretBtn = document.getElementById('secretBtn');
+        const surpriseModal = document.getElementById('surpriseModal');
+        const closeModal = document.getElementById('closeModal');
+
+        giftBox.addEventListener('click', function() {
+            this.classList.add('opened');
+            setTimeout(() => {
+                openingText.classList.add('show');
+            }, 900);
+        });
+
+        // Enter Main Content
+        enterButton.addEventListener('click', function() {
+            document.querySelector('.opening-section').style.display = 'none';
+            mainContent.classList.add('show');
+            
+            // Create petals
+            createPetals();
+        });
+
+        // Petals Function
+        function createPetals() {
+            const colors = ['#ffb6c1', '#ff69b4', '#ffc0cb', '#ff1493', '#ffe4e1'];
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    petal.style.left = Math.random() * 100 + 'vw';
+                    petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    petal.style.animationDelay = Math.random() * 2 + 's';
+                    petal.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(petal);
+                    
+                    setTimeout(() => petal.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.section-title, .story-card, .quality-card, .reason-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', function() {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+
+            // Show secret button when scrolled 75%
+            if (scrolled > 75) {
+                secretBtn.classList.add('show');
+            }
+        });
+
+        // Secret Modal
+        secretBtn.addEventListener('click', function() {
+            surpriseModal.classList.add('show');
+            createPetals();
+        });
+
+        closeModal.addEventListener('click', function() {
+            surpriseModal.classList.remove('show');
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target === surpriseModal) {
+                surpriseModal.classList.remove('show');
+            }
+        });
+
+        // Quality Cards Click Effect
+        document.querySelectorAll('.quality-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.background = 'linear-gradient(135deg, #ffe4ec 0%, #fff0f5 100%)';
+                setTimeout(() => {
+                    this.style.background = 'white';
+                }, 400);
+            });
+        });
+
+        // Add floating animation to flowers
+        document.querySelectorAll('.flower').forEach((flower, index) => {
+            flower.style.animationDelay = (index * 4) + 's';
+        });
+    </script>
+</body>
+</html>
